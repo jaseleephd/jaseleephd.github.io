@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap"
       rel="stylesheet"
     >
     <style>
@@ -32,11 +32,15 @@
 
       body {
         margin: 0;
-        font-family: "Instrument Sans", "Segoe UI", sans-serif;
+        font-family: "Manrope", "Segoe UI", sans-serif;
         font-size: 15px;
         line-height: 1.5;
+        font-weight: 400;
+        letter-spacing: -0.01em;
         color: var(--text);
         background: var(--bg);
+        font-optical-sizing: auto;
+        -webkit-font-smoothing: antialiased;
       }
 
       a {
@@ -68,15 +72,17 @@
 
       h1 {
         margin: 0 0 18px;
+        font-family: "Newsreader", Georgia, serif;
         font-size: 46px;
         font-weight: 500;
         line-height: 1;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.03em;
       }
 
       p {
         margin: 0 0 14px;
         max-width: 62ch;
+        text-wrap: pretty;
       }
 
       .links {
