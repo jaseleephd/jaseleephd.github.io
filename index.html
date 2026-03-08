@@ -12,17 +12,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     >
     <style>
       :root {
-        --text: #1f1f1f;
-        --muted: #666;
-        --link: #1772d1;
-        --link-hover: #f09227;
-        --line: #e6e6e6;
-        --bg: #fff;
+        --text: #161616;
+        --muted: #5f5f5f;
+        --link: #1f4fd1;
+        --link-hover: #12389c;
+        --line: #ddddda;
+        --bg: #f7f7f4;
+        --surface: rgba(255, 255, 255, 0.82);
       }
 
       * {
@@ -31,9 +32,9 @@
 
       body {
         margin: 0;
-        font-family: "Lato", Verdana, Helvetica, sans-serif;
-        font-size: 14px;
-        line-height: 1.55;
+        font-family: "Instrument Sans", "Segoe UI", sans-serif;
+        font-size: 15px;
+        line-height: 1.5;
         color: var(--text);
         background: var(--bg);
       }
@@ -41,6 +42,7 @@
       a {
         color: var(--link);
         text-decoration: none;
+        transition: color 140ms ease, border-color 140ms ease;
       }
 
       a:hover,
@@ -49,43 +51,59 @@
       }
 
       main {
-        width: min(100%, 860px);
+        width: min(100%, 920px);
         margin: 0 auto;
-        padding: 56px 24px 72px;
+        padding: 72px 28px 88px;
       }
 
       .intro {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 240px;
-        gap: 36px;
+        grid-template-columns: minmax(0, 1fr) 260px;
+        gap: 44px;
         align-items: start;
+        padding: 28px;
+        border: 1px solid var(--line);
+        background: var(--surface);
       }
 
       h1 {
         margin: 0 0 18px;
-        font-size: 42px;
-        font-weight: 400;
-        line-height: 1.1;
-        text-align: center;
+        font-size: 46px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.04em;
       }
 
       p {
         margin: 0 0 14px;
+        max-width: 62ch;
       }
 
       .links {
-        margin-top: 22px;
-        text-align: center;
+        margin-top: 24px;
       }
 
       .links a {
         display: inline-block;
-        margin: 0 10px;
+        margin: 0 14px 8px 0;
+        padding-bottom: 1px;
+        border-bottom: 1px solid transparent;
+      }
+
+      .links a:hover,
+      .links a:focus {
+        border-color: currentColor;
       }
 
       .photo {
         width: 100%;
         border: 1px solid var(--line);
+        border-radius: 12px;
+        display: block;
+      }
+
+      .photo-wrap {
+        padding-top: 4px;
       }
 
       .note {
@@ -94,27 +112,30 @@
 
       @media (max-width: 720px) {
         main {
-          padding: 32px 20px 48px;
+          padding: 28px 18px 40px;
         }
 
         .intro {
           grid-template-columns: 1fr;
           gap: 24px;
+          padding: 20px;
         }
 
         .photo-wrap {
-          max-width: 240px;
+          max-width: 220px;
           margin: 0 auto;
           order: -1;
+          padding-top: 0;
         }
 
         h1 {
-          font-size: 34px;
+          font-size: 36px;
           margin-bottom: 20px;
+          text-align: center;
         }
 
         .links a {
-          margin: 0 8px 8px;
+          margin: 0 12px 8px 0;
         }
       }
     </style>
