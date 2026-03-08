@@ -1,72 +1,575 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-        <link rel="icon" type="image/x-icon" href="photos/nyu.ico" />
-    <meta name="generator" content="HTML Tidy for Linux/x86 (vers 11 February 2007), see www.w3.org">
-    <style type="text/css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jason Lee</title>
+    <meta
+      name="description"
+      content="Jason Lee is a Principal Scientist, Director at Salesforce working on voice agents for Slack."
+    >
+    <link rel="icon" type="image/x-icon" href="photos/nyu.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      rel="stylesheet"
+    >
+    <style>
+      :root {
+        --bg: #f4f1ea;
+        --surface: rgba(255, 255, 255, 0.72);
+        --surface-strong: rgba(255, 255, 255, 0.88);
+        --text: #1d1d1b;
+        --muted: #5f615c;
+        --line: rgba(29, 29, 27, 0.12);
+        --accent: #0d6c63;
+        --accent-soft: rgba(13, 108, 99, 0.1);
+        --shadow: 0 20px 60px rgba(38, 36, 31, 0.08);
+        --radius: 28px;
+        --max-width: 1080px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Manrope", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(13, 108, 99, 0.12), transparent 30%),
+          radial-gradient(circle at right 20%, rgba(190, 146, 92, 0.14), transparent 28%),
+          linear-gradient(180deg, #f8f5ef 0%, var(--bg) 100%);
+      }
 
       a {
-      color: #1772d1;
-      text-decoration:none;
+        color: inherit;
+        text-decoration: none;
       }
-      a:focus, a:hover {
-      color: #f09227;
-      text-decoration:none;
+
+      a:hover {
+        color: var(--accent);
       }
-      body,td,th {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 14px
+
+      .page {
+        width: min(calc(100% - 32px), var(--max-width));
+        margin: 0 auto;
+        padding: 24px 0 56px;
       }
-      strong {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 14px
+
+      .frame {
+        background: var(--surface);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(18px);
+        border-radius: calc(var(--radius) + 8px);
+        box-shadow: var(--shadow);
+        overflow: hidden;
       }
-      heading {
-      font-family: 'Lato', Verdana, Helvetica, sans-serif;
-      font-size: 15px;
-      font-weight: 700
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        padding: 22px 28px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        font-size: 0.9rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .nav a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.65);
+        border: 1px solid rgba(29, 29, 27, 0.06);
+        transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+      }
+
+      .nav a:hover {
+        color: var(--accent);
+        border-color: rgba(13, 108, 99, 0.2);
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.9fr);
+        gap: 28px;
+        padding: 34px 28px 24px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        margin-bottom: 18px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: "Source Serif 4", serif;
+        font-size: clamp(3rem, 8vw, 5.6rem);
+        line-height: 0.94;
+        letter-spacing: -0.05em;
+      }
+
+      .lede {
+        max-width: 62ch;
+        margin: 24px 0 0;
+        font-size: 1.08rem;
+        line-height: 1.8;
+        color: var(--muted);
+      }
+
+      .accent {
+        color: var(--accent);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button,
+      .button-secondary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 18px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      }
+
+      .button {
+        background: var(--text);
+        color: #fff;
+        box-shadow: 0 12px 30px rgba(29, 29, 27, 0.16);
+      }
+
+      .button:hover {
+        color: #fff;
+        transform: translateY(-1px);
+      }
+
+      .button-secondary {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.58);
+        color: var(--text);
+      }
+
+      .button-secondary:hover {
+        transform: translateY(-1px);
+        border-color: rgba(13, 108, 99, 0.22);
+      }
+
+      .portrait-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100%;
+        padding: 18px;
+        border-radius: var(--radius);
+        background: var(--surface-strong);
+        border: 1px solid rgba(29, 29, 27, 0.07);
+      }
+
+      .portrait {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 22px;
+      }
+
+      .portrait-caption {
+        padding: 16px 4px 2px;
+        color: var(--muted);
+        font-size: 0.96rem;
+        line-height: 1.65;
+      }
+
+      .content-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 20px;
+        padding: 8px 28px 28px;
+      }
+
+      .panel {
+        padding: 24px;
+        border-radius: var(--radius);
+        background: var(--surface-strong);
+        border: 1px solid rgba(29, 29, 27, 0.07);
+      }
+
+      .panel h2 {
+        margin: 0 0 18px;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+      }
+
+      .timeline-item {
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .timeline-item:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .timeline-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .timeline strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 1.02rem;
+      }
+
+      .timeline p,
+      .publication p,
+      .notes p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .publication-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .publication {
+        padding: 16px 18px;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .publication strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1rem;
+      }
+
+      .publication-links {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .notes {
+        display: grid;
+        gap: 18px;
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .list div {
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .list div:last-child {
+        padding-bottom: 0;
+        border-bottom: 0;
+      }
+
+      .list strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .footer {
+        padding: 8px 28px 28px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      @media (max-width: 880px) {
+        .topbar,
+        .hero,
+        .content-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          width: min(calc(100% - 20px), var(--max-width));
+          padding-top: 10px;
+        }
+
+        .topbar,
+        .hero,
+        .content-grid,
+        .footer {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .panel,
+        .portrait-card {
+          border-radius: 22px;
+        }
+
+        h1 {
+          font-size: clamp(2.6rem, 16vw, 4rem);
+        }
+
+        .lede {
+          font-size: 1rem;
+        }
       }
     </style>
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <title>Jason Lee</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
-
   </head>
-
   <body>
-    <table width="850" border="0" align="center" cellpadding="20">
-      <tr>
-	<td> 
-          <table width="100%" align="center" border="0" cellpadding="10">
-            <tr>
-              <td width="57%" valign="middle">
-		<p align="center"><font size="6">Jason Lee</font></p>
-		<p align="justify">
-        I am currently a Principal Research Scientist at <a href="https://www.salesforceairesearch.com/">Salesforce AI Research</a>, where I work on Large Language Models for Enterprise Solutions.</a><br><br>
+    <main class="page">
+      <div class="frame">
+        <header class="topbar">
+          <div class="brand">Jason Lee</div>
+          <nav class="nav" aria-label="Primary">
+            <a href="#about">About</a>
+            <a href="#publications">Publications</a>
+            <a href="documents/jason-lee-cv.pdf">CV</a>
+            <a href="https://scholar.google.com/citations?user=adUC3vkAAAAJ">Scholar</a>
+            <a href="https://github.com/jaseleephd">GitHub</a>
+            <a href="https://www.linkedin.com/in/jaseleephd/">LinkedIn</a>
+          </nav>
+        </header>
 
-    I started my professional career in the autonomous driving industry, training state-of-the-art object recognition models and shipping them to hundreds of thousands of customers at <a href="https://www.tesla.com/AI">Tesla Autopilot</a>. I then had a brief stint at the Office of the CTO at <a href="https://getcruise.com/">Cruise</a> where I provided technical advice to the CTO/CEO, helping shape technical strategies and answer long-term strategic questions.</a><br><br>
+        <section class="hero" id="about">
+          <div>
+            <div class="eyebrow">Principal Scientist, Director at Salesforce</div>
+            <h1>
+              Building
+              <span class="accent">voice agents</span>
+              for Slack.
+            </h1>
+            <p class="lede">
+              I lead research and applied AI work at Salesforce, where I focus on voice agents for Slack and practical
+              large language model systems for real products. My work sits at the intersection of language, interfaces,
+              and deployment: building models that are useful, reliable, and ready to ship.
+            </p>
+            <p class="lede">
+              Previously, I worked on autonomy at Tesla, strategy and technical direction at Cruise, and completed my
+              PhD in machine learning at New York University under Kyunghyun Cho. My research background spans sequence
+              modeling, non-autoregressive generation, dialogue, and grounded language learning.
+            </p>
+            <div class="cta-row">
+              <a class="button" href="mailto:jason@cs.nyu.edu">Email</a>
+              <a class="button-secondary" href="documents/jason-lee-cv.pdf">Download CV</a>
+            </div>
+          </div>
 
-        I obtained my Ph.D in Machine Learning from <a href="https://cs.nyu.edu/home/index.html">New York University</a>, where I spent five delightful years training neural networks under the watchful eyes of <a href="http://www.kyunghyuncho.me/">Kyunghyun Cho</a>. My <a href="https://cs.nyu.edu/media/publications/jason-lee-thesis.pdf">Ph.D thesis</a> focused on non-autoregressive generation of sequences using latent variable models and iterative refinement. During my studies, I was lucky to be supported by Qualcomm, where I was one of the first <a href="https://www.qualcomm.com/research/university-relations/innovation-fellowship/winners">European Innovation Fellows.</a><br><br>
+          <aside class="portrait-card">
+            <img class="portrait" src="photos/photo_2022.jpeg" alt="Portrait of Jason Lee">
+            <div class="portrait-caption">
+              Principal Scientist, Director at Salesforce.<br>
+              Working on voice-driven AI experiences for Slack.
+            </div>
+          </aside>
+        </section>
 
-		</p>
-		<p align=center>
-		  <a href="mailto:jason@cs.nyu.edu">Email</a> |
-          <a href="https://scholar.google.com/citations?user=adUC3vkAAAAJ">Google Scholar</a> |
-          <a href="https://github.com/jaseleephd">Github</a> |
-          <a href="https://www.linkedin.com/in/jaseleephd/">LinkedIn</a>
-		</p>
-              </td>
-              <td width="35%">
-              <br>
-              <br>
-		<img width="240"
-                     src="photos/photo_2022.jpeg" 
-                     alt="Jason Lee">
-	      </td>
-            </tr> 
-          </table>
+        <section class="content-grid">
+          <div class="panel">
+            <h2>Experience</h2>
+            <div class="timeline">
+              <article class="timeline-item">
+                <div class="timeline-meta">
+                  <span>Salesforce</span>
+                  <span>Current</span>
+                </div>
+                <strong>Principal Scientist, Director</strong>
+                <p>Leading work on voice agents for Slack and enterprise AI systems built around language models.</p>
+              </article>
+              <article class="timeline-item">
+                <div class="timeline-meta">
+                  <span>Cruise</span>
+                  <span>Previously</span>
+                </div>
+                <strong>Office of the CTO</strong>
+                <p>Advised leadership on technical strategy, long-range planning, and high-leverage research questions.</p>
+              </article>
+              <article class="timeline-item">
+                <div class="timeline-meta">
+                  <span>Tesla</span>
+                  <span>Previously</span>
+                </div>
+                <strong>Autopilot AI</strong>
+                <p>Built and shipped production object-recognition models for autonomous driving systems at scale.</p>
+              </article>
+              <article class="timeline-item">
+                <div class="timeline-meta">
+                  <span>New York University</span>
+                  <span>PhD</span>
+                </div>
+                <strong>Machine Learning</strong>
+                <p>Studied neural sequence modeling, iterative refinement, and latent-variable methods with Kyunghyun Cho.</p>
+              </article>
+            </div>
+          </div>
 
-    </table>
+          <aside class="panel">
+            <h2>Profile</h2>
+            <div class="notes">
+              <p>
+                I care about elegant systems, clear interfaces, and turning frontier model capabilities into products
+                that people actually use.
+              </p>
+              <div class="list">
+                <div>
+                  <strong>Research areas</strong>
+                  Voice agents, LLMs, dialogue systems, sequence modeling
+                </div>
+                <div>
+                  <strong>Current focus</strong>
+                  Enterprise AI experiences inside Slack
+                </div>
+                <div>
+                  <strong>Selected links</strong>
+                  <a href="https://cs.nyu.edu/media/publications/jason-lee-thesis.pdf">PhD thesis</a> /
+                  <a href="documents/jason-lee-cv.pdf">CV</a> /
+                  <a href="https://www.qualcomm.com/research/university-relations/innovation-fellowship/winners">Qualcomm Innovation Fellowship</a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <section class="content-grid" id="publications">
+          <div class="panel">
+            <h2>Selected Publications</h2>
+            <div class="publication-list">
+              <article class="publication">
+                <strong>Iterative Refinement in the Continuous Space for Non-Autoregressive Neural Machine Translation</strong>
+                <p>EMNLP 2020 · Jason Lee, Raphael Shu, Kyunghyun Cho</p>
+                <div class="publication-links">
+                  <a href="bibs/lee20iterative.html">BibTeX</a>
+                </div>
+              </article>
+              <article class="publication">
+                <strong>On the Discrepancy between Density Estimation and Sequence Generation</strong>
+                <p>arXiv 2020 · Jason Lee, Dustin Tran, Orhan Firat, Kyunghyun Cho</p>
+                <div class="publication-links">
+                  <a href="bibs/lee20discrepancy.html">BibTeX</a>
+                </div>
+              </article>
+              <article class="publication">
+                <strong>Countering Language Drift via Grounding</strong>
+                <p>EMNLP 2019 · Jason Lee, Kyunghyun Cho, Douwe Kiela</p>
+                <div class="publication-links">
+                  <a href="bibs/lee19countering.html">BibTeX</a>
+                </div>
+              </article>
+              <article class="publication">
+                <strong>Deterministic Non-Autoregressive Neural Sequence Modeling by Iterative Refinement</strong>
+                <p>EMNLP 2018 · Jason Lee, Elman Mansimov, Kyunghyun Cho</p>
+                <div class="publication-links">
+                  <a href="bibs/lee18deterministic.html">BibTeX</a>
+                </div>
+              </article>
+              <article class="publication">
+                <strong>Fully Character-Level Neural Machine Translation without Explicit Segmentation</strong>
+                <p>TACL 2017 · Jason Lee, Kyunghyun Cho, Thomas Hofmann</p>
+                <div class="publication-links">
+                  <a href="bibs/lee17fully.html">BibTeX</a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h2>Contact</h2>
+            <div class="notes">
+              <p>
+                The best way to reach me is by email. For research history, publications, and recent work, the links
+                above cover the essentials.
+              </p>
+              <div class="list">
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:jason@cs.nyu.edu">jason@cs.nyu.edu</a>
+                </div>
+                <div>
+                  <strong>Google Scholar</strong>
+                  <a href="https://scholar.google.com/citations?user=adUC3vkAAAAJ">Citation profile</a>
+                </div>
+                <div>
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/jaseleephd">github.com/jaseleephd</a>
+                </div>
+                <div>
+                  <strong>LinkedIn</strong>
+                  <a href="https://www.linkedin.com/in/jaseleephd/">linkedin.com/in/jaseleephd</a>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+
+        <div class="footer">
+          Designed as a lightweight single-page academic site with updated role and research focus.
+        </div>
+      </div>
+    </main>
   </body>
 </html>
