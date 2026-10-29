@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow">
+<title>Finish Tesla connection</title>
+<style>body{font:18px system-ui;max-width:42rem;margin:5rem auto;padding:0 1.5rem;line-height:1.6;color:#eee;background:#171717}a{color:#99caff}</style>
+<h1>Finish Tesla connection</h1><p id="status">Checking Tesla's response…</p><a id="continue" hidden>Continue on the Linux setup computer</a>
+<script>
+'use strict';
+const params = new URLSearchParams(location.search);
+history.replaceState(null, '', location.pathname);
+const status = document.getElementById('status');
+const link = document.getElementById('continue');
+const code = params.get('code');
+const state = params.get('state');
+if (params.has('error')) {
+ status.textContent = 'Tesla authorization was not completed. Return to the local setup page to try again.';
+} else if (code && state && code.length <= 8192 && state.length <= 256) {
+ const local = new URL('http://127.0.0.1:8770/tesla/callback');
+ local.searchParams.set('code', code);
+ local.searchParams.set('state', state);
+ link.href = local.href;
+ link.hidden = false;
+ status.textContent = 'Continue on the same Linux computer where setup was started. The local setup service must be running.';
+} else {
+ status.textContent = 'Start authorization from the local Tesla setup page. This page does not accept Tesla passwords or store tokens.';
+}
+</script></html>
